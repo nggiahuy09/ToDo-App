@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 class CardBody extends StatelessWidget {
   CardBody({
     Key? key,
-    required this.index,
+    // required this.index,
     required this.item,
     required this.handleDelete,
     required this.handleDone,
   }) : super(key: key);
 
   var item;
-  var index;
+  // var index;
   bool isChecked = false;
   final Function handleDelete;
   final Function handleDone;
@@ -21,31 +21,39 @@ class CardBody extends StatelessWidget {
     return Container(
         width: double.infinity,
         height: 70,
-        margin: const EdgeInsets.only(bottom: 20),
+        margin: const EdgeInsets.only(bottom: 5),
         decoration: BoxDecoration(
-          color: (index % 2 == 0) ? Color.fromARGB(255, 134, 168, 207) : Color.fromARGB(255, 225, 205, 183),
-          borderRadius: BorderRadius.circular(12),
+          // color: (index % 2 == 0) ? Color.fromARGB(255, 134, 168, 207) : Color.fromARGB(255, 225, 205, 183),
+          color: Color.fromARGB(255, 31, 31, 31),
+          borderRadius: BorderRadius.circular(8),
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              InkWell(
-                onTap: () async {
-                  return handleDone(item.id);
-                },
-                child: Icon(
-                  Icons.done_outline_sharp,
-                  size: 25,
-                ),
-              ),
-              Text(
-                item.name,
-                style: const TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.normal,
-                ),
+              Row(
+                children: [
+                  InkWell(
+                    onTap: () async {
+                      return handleDone(item.id);
+                    },
+                    child: Icon(
+                      Icons.done_outline_sharp,
+                      size: 20,
+                      color: Color.fromARGB(255, 245, 245, 245),
+                    ),
+                  ),
+                  SizedBox(width: 28,),
+                  Text(
+                    item.name,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.normal,
+                      color: Color.fromARGB(255, 245, 245, 245),
+                    ),
+                  ),
+                ],
               ),
               InkWell(
                 onTap: () async {
@@ -57,9 +65,10 @@ class CardBody extends StatelessWidget {
                 },
                 child: const Icon(
                   Icons.delete_outline,
-                  size: 25,
+                  size: 20,
+                  color: Color.fromARGB(255, 245, 245, 245),
                 ),
-              ),
+              )
             ],
           ),
         ));

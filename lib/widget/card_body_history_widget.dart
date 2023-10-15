@@ -14,20 +14,20 @@ class HistoryCard extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            width: 280,
+            width: double.infinity,
             height: 60,
+            margin: EdgeInsets.only(bottom: 5),
             decoration: BoxDecoration(
-              color: Colors.grey,
+              color: Color.fromARGB(255, 10, 182, 171),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Center(
               child: Text(
                 content,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 20),
               ),
             ),
           ),
-          SizedBox(height: 10,),
         ],
       ),
     );

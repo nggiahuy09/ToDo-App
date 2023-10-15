@@ -39,17 +39,23 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             child: Container(
               width: double.infinity,
               height: double.infinity,
-              color: Color.fromARGB(255, 163, 163, 152),
+              color: Color.fromARGB(255, 21, 21, 21),
               child: DrawerHeader(
                 child: Column(
                   children: [
                     Text(
                       'F I N I S H E D',
-                      style: TextStyle(fontSize: 30),
+                      style: TextStyle(
+                        fontSize: 30,
+                        color: Color.fromARGB(255, 245, 245, 245),
+                      ),
                     ),
                     Text(
                       '(Hold the task to delete)',
-                      style: TextStyle(fontSize: 18),
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Color.fromARGB(255, 245, 245, 245),
+                      ),
                     )
                   ],
                 ),
@@ -61,7 +67,8 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             child: Container(
               width: double.infinity,
               height: double.infinity,
-              color: Color.fromARGB(255, 226, 226, 212),
+              margin: EdgeInsets.only(bottom: 5),
+              color: Color.fromARGB(255, 31, 31, 31),
               child: ListView.builder(
                 itemCount: widget.hisItems.length,
                 itemBuilder: (context, index) {

@@ -47,13 +47,14 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 21, 21, 21),
       appBar: AppBar(
         centerTitle: true, // hoặc bọc ngoài title 1 widget Center
         title: const Text(
           'ToDoList',
           style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Color.fromARGB(255, 181, 181, 169),
+        backgroundColor: Color.fromARGB(255, 10, 182, 171),
       ),
       endDrawer: DrawerWidget(hisItems: hisItems,),
       body: SingleChildScrollView(
@@ -61,7 +62,7 @@ class _MyAppState extends State<MyApp> {
         child: Column(
           children: items
               .map((item) => CardBody(
-            index: items.indexOf(item),
+            // index: items.indexOf(item),
             item: item,
             handleDelete: _handleDeleteTask,
             handleDone: _handleDoneTask,
@@ -70,7 +71,7 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Color.fromARGB(255, 134, 168, 207),
+        backgroundColor: Color.fromARGB(255, 10, 182, 171),
         onPressed: () {
           showModalBottomSheet(
               shape: const RoundedRectangleBorder(

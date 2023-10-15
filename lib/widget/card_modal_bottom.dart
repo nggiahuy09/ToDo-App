@@ -52,7 +52,7 @@ class ModalBottom extends StatelessWidget {
                 child: ElevatedButton(
                     onPressed: () => _handleOnClick(context),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 201, 200, 198),
+                      backgroundColor: Color.fromARGB(255, 10, 182, 171),
                       ),
                     child: const Text('Add Task'),
                 ),
