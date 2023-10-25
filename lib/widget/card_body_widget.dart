@@ -1,5 +1,7 @@
-import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+
+import '../modal/items.dart';
 
 class CardBody extends StatelessWidget {
   CardBody({
@@ -10,7 +12,7 @@ class CardBody extends StatelessWidget {
     required this.handleDone,
   }) : super(key: key);
 
-  var item;
+  late DataItems item;
   // var index;
   bool isChecked = false;
   final Function handleDelete;
@@ -19,58 +21,77 @@ class CardBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: double.infinity,
-        height: 70,
-        margin: const EdgeInsets.only(bottom: 5),
-        decoration: BoxDecoration(
-          // color: (index % 2 == 0) ? Color.fromARGB(255, 134, 168, 207) : Color.fromARGB(255, 225, 205, 183),
-          color: Color.fromARGB(255, 31, 31, 31),
-          borderRadius: BorderRadius.circular(8),
+      margin: EdgeInsets.only(bottom: 8.0),
+      child: Slidable(
+        startActionPane: ActionPane(
+          motion: StretchMotion(),
+          children: [
+            SlidableAction(
+              onPressed: ((context) {
+                handleDone(item.id);
+              }),
+              icon: Icons.done,
+              foregroundColor: Colors.white,
+              backgroundColor: Color.fromARGB(255, 10, 182, 171),
+              borderRadius: BorderRadius.circular(8),
+            )
+          ],
         ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
+        endActionPane: ActionPane(motion: StretchMotion(), children: [
+          SlidableAction(
+            onPressed: ((context) {
+              handleDelete(item.id);
+            }),
+            icon: Icons.delete,
+            backgroundColor: Colors.red,
+            borderRadius: BorderRadius.circular(8),
+          )
+        ]),
+        child: Container(
+          width: double.infinity,
+          height: 60,
+          margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
+          padding: EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
+          decoration: BoxDecoration(
+            color: Colors.grey[800],
+            borderRadius: BorderRadius.circular(8),
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  InkWell(
-                    onTap: () async {
-                      return handleDone(item.id);
-                    },
-                    child: Icon(
-                      Icons.done_outline_sharp,
-                      size: 20,
-                      color: Color.fromARGB(255, 245, 245, 245),
-                    ),
-                  ),
-                  SizedBox(width: 28,),
-                  Text(
-                    item.name,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.normal,
-                      color: Color.fromARGB(255, 245, 245, 245),
-                    ),
-                  ),
-                ],
-              ),
-              InkWell(
-                onTap: () async {
-                  if (await confirm(context)) {
-                    return handleDelete(item.id);
-                  } else {
-                    return;
-                  }
-                },
-                child: const Icon(
-                  Icons.delete_outline,
-                  size: 20,
-                  color: Color.fromARGB(255, 245, 245, 245),
+              Text(
+                item.name,
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
                 ),
-              )
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 11),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                     "${item.time.hour}:${item.time.minute}" ,
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    Text(
+                      "${item.date.day}/${item.date.month}/${item.date.year}",
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

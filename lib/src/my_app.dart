@@ -16,8 +16,8 @@ class _MyAppState extends State<MyApp> {
   final List<DataItems> items = [];
   final List<DataItems> hisItems = [];
 
-  void _handleAddTask(String name) {
-    final newItem = DataItems(id: DateTime.now().toString(), name: name);
+  void _handleAddTask(String name, DateTime date, TimeOfDay time) {
+    final newItem = DataItems(id: DateTime.now().toString(), name: name, date: date, time: time);
     setState(() {
       items.add(newItem);
     });
@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> {
       ),
       endDrawer: DrawerWidget(hisItems: hisItems,),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
         child: Column(
           children: items
               .map((item) => CardBody(

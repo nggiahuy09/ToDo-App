@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
-class HistoryCard extends StatelessWidget {
-  HistoryCard({
-    Key? key,
-    required String this.content
-  }) : super(key : key);
+import '../modal/items.dart';
 
-  late String content;
+class HistoryCard extends StatelessWidget {
+  HistoryCard({Key? key, required DataItems this.item}) : super(key: key);
+
+  late DataItems item;
 
   @override
   Widget build(BuildContext context) {
@@ -15,22 +14,42 @@ class HistoryCard extends StatelessWidget {
         children: [
           Container(
             width: double.infinity,
-            height: 60,
-            margin: EdgeInsets.only(bottom: 5),
+            height: 50,
+            margin: EdgeInsets.only(left: 5),
+            padding: EdgeInsets.fromLTRB(8.0, 0, 8.0, 0),
             decoration: BoxDecoration(
-              color: Color.fromARGB(255, 10, 182, 171),
-              borderRadius: BorderRadius.circular(10),
+              color: Colors.grey[600],
+              borderRadius: BorderRadius.circular(8),
             ),
-            child: Center(
-              child: Text(
-                content,
-                style: TextStyle(fontSize: 20),
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  item.name,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        "${item.time.hour}:${item.time.minute}",
+                      ),
+                      Text(
+                        "${item.date.day}/${item.date.month}/${item.date.year}",
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
         ],
       ),
     );
   }
-
 }
